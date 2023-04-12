@@ -4,35 +4,35 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class AnimalMethods {
-    public void carnivorosNaoRepteis(List<Animal> animais) {
-        animais.stream()
+    public List<Animal> carnivorosNaoRepteis(List<Animal> animais) {
+        return animais.stream()
                 .filter(animal -> animal.getAlimentacao().equals("Carnivoro"))
                 .filter(animal -> !animal.getClasse().equals("Reptil"))
-                .forEach(System.out::println);
+                .collect(Collectors.toList());
     }
-    public void carnivorosPorPeso(List<Animal> animais) {
-        animais.stream()
+    public List<Animal> carnivorosPorPeso(List<Animal> animais) {
+        return animais.stream()
                 .filter(animal -> animal.getAlimentacao().equals("Carnivoro"))
                 .sorted(Comparator.comparing(animal -> animal.getPeso()))
-                .forEach(System.out::println);
+                .collect(Collectors.toList());
     }
 
-    public void animalMaisPesado(List<Animal> animais) {
+    public Animal animalMaisPesado(List<Animal> animais) {
         Optional<Animal> animalOp = animais.stream()
                 .max(Comparator.comparing(animal -> animal.getPeso()));
         Animal animalMaisPesado = new Animal().update(animalOp);
-        System.out.println(animalMaisPesado);
+        return animalMaisPesado;
     }
 
-    public void mamiferoMaisLeve(List<Animal> animais) {
+    public Animal mamiferoMaisLeve(List<Animal> animais) {
         Optional<Animal> mamiferoOp = animais.stream().filter(animal -> animal.getClasse().equals("Mamifero"))
                 .min(Comparator.comparing(animal -> animal.getPeso()));
         Animal mamiferoMaisLeve = new Animal().update(mamiferoOp);
-        System.out.println(mamiferoMaisLeve);
+        return mamiferoMaisLeve;
     }
 
-    public void carnivorosAcima30(List<Animal> animais, Double peso) {
-        animais.stream().filter(animal -> animal.getAlimentacao().equals("Carnivoro"))
-                .filter(animal -> animal.getPeso()>peso).forEach(System.out::println);
+    public List<Animal> carnivorosAcimaX(List<Animal> animais, Double peso) {
+        return animais.stream().filter(animal -> animal.getAlimentacao().equals("Carnivoro"))
+                .filter(animal -> animal.getPeso()>peso).collect(Collectors.toList());
     }
 }
