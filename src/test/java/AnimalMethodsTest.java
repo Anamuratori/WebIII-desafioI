@@ -7,18 +7,16 @@ import java.util.stream.Collectors;
 
 public class AnimalMethodsTest {
     AnimalMethods animalMethods = new AnimalMethods();
+    Animal jacare = new Animal("Jacare", "Reptil", "Carnivoro", 300.0);
+    Animal cobra = new Animal("Cobra", "Reptil", "Carnivoro", 50.0);
+    Animal galinha = new Animal("Galinha", "Ave", "Onivoro", 3.0);
+    Animal cachorro = new Animal("Cachorro", "Mamifero", "Carnivoro", 25.0);
+    Animal girafa = new Animal("Girafa", "Mamifero", "Herbivoro", 1500.0);
+    Animal vaca = new Animal("Vaca", "Mamifero", "Herbivoro", 700.0);
+    Animal gaviao = new Animal("Gaviao", "Ave", "Carnivoro", 5.0);
 
+    List<Animal> animais = new ArrayList<>(Arrays.asList(jacare, cobra, galinha, cachorro, girafa, vaca, gaviao));
 
-
-    private Animal jacare = new Animal("Jacare", "Reptil", "Carnivoro", 300.0);
-    private Animal cobra = new Animal("Cobra", "Reptil", "Carnivoro", 50.0);
-    private Animal galinha = new Animal("Galinha", "Ave", "Onivoro", 3.0);
-    private Animal cachorro = new Animal("Cachorro", "Mamifero", "Carnivoro", 25.0);
-    private Animal girafa = new Animal("Girafa", "Mamifero", "Herbivoro", 1500.0);
-    private Animal vaca = new Animal("Vaca", "Mamifero", "Herbivoro", 700.0);
-    private Animal gaviao = new Animal("Gaviao", "Ave", "Carnivoro", 5.0);
-
-    private List<Animal> animais = new ArrayList<>(Arrays.asList(jacare, cobra, galinha, cachorro, girafa, vaca, gaviao));
     @Test
     public void carnivorosNaoRepteisTeste () {
         List<Animal> esperado = new ArrayList<>(Arrays.asList(cachorro, gaviao));
@@ -56,6 +54,4 @@ public class AnimalMethodsTest {
         List<Animal> obtido = animalMethods.carnivorosAcimaX(animais, 30.0);
         Assertions.assertEquals(esperado, obtido);
     }
-
-
 }
